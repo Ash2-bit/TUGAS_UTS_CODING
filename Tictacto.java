@@ -5,6 +5,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+//bagian login
 public class Tictacto extends JFrame {
     private JTextField usernameField;
     private JPasswordField passwordField;
@@ -16,19 +17,21 @@ public class Tictacto extends JFrame {
         setResizable(false);
         JPanel panel = new JPanel();
         panel.setLayout(new GridLayout(3, 2));
-
-        //pemberian warna pada
         panel.setBackground(Color.orange);
+        
         JLabel usernameLabel = new  JLabel("   Username:");
         usernameLabel.setFont(new Font("Italic", Font.BOLD, 30));
         usernameField = new JTextField();
         usernameField.setFont(new Font("Italic", Font.BOLD, 20));
+        
         JLabel passwordLabel = new JLabel("   Password:");
         passwordLabel.setFont(new Font("Italic", Font.BOLD, 30));
         passwordField = new JPasswordField();
         passwordField.setFont(new Font("Italic", Font.BOLD, 20));
+        
         loginButton = new JButton("Login");
         loginButton.setFont(new Font("Italic", Font.BOLD, 40));
+        
         loginButton.setBackground(Color.RED);
         loginButton.setForeground(Color.BLUE);
         usernameLabel.setForeground(Color.white);
@@ -46,10 +49,9 @@ public class Tictacto extends JFrame {
                 String password = new String(passwordField.getPassword());
 
                 if (username.equals("") && password.equals("")) {
-                    // pengguna berhasil login, mulai game
                     TicTacToeGame game = new TicTacToeGame();
                     game.setVisible(true);
-                    dispose(); // Close the login window
+                    dispose();
                 } else {
                     JOptionPane.showMessageDialog(null, "Username atau Password tidak valid");
                 }
@@ -126,7 +128,8 @@ class TicTacToeGame extends JFrame {
                 if (isPlayer1Turn) {
                     button.setText("X");
                     button.setForeground(Color.RED);
-                } else {
+                } 
+                else {
                     button.setText("O");
                     button.setForeground(Color.blue);
                 }
@@ -155,21 +158,18 @@ class TicTacToeGame extends JFrame {
                 }
             }
 
-            // Check rows
             for (int i = 0; i < 3; i++) {
                 if (!board[i][0].isEmpty() && board[i][0].equals(board[i][1]) && board[i][0].equals(board[i][2])) {
                     return true;
                 }
             }
 
-            // Check columns
             for (int j = 0; j < 3; j++) {
                 if (!board[0][j].isEmpty() && board[0][j].equals(board[1][j]) && board[0][j].equals(board[2][j])) {
                     return true;
                 }
             }
 
-            // Check diagonals
             if (!board[0][0].isEmpty() && board[0][0].equals(board[1][1]) && board[0][0].equals(board[2][2])) {
                 return true;
             }
